@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous"> 
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <!-- Include eel.js - note this file doesn't exist in the 'web' directory -->
+        <script type="text/javascript" src="/eel.js"></script>
+        <script type="text/javascript">
+        $(function(){
+                    
+                    $("#btn").click(function(){
+                        eel.getMeTheLinks($("#query").val(), $('#pages').val())(
+                            (list) => {
+                                let texto = "";
+                                texto += "<br><h3>Resulting Data:</h3><br>";
+                                console.log(list);
+                                for(let i=0; i<list.length; i++)
+                                {
+                                  texto += "Name: "+list[i][0]+", <a href=' "+ list[i][1] +"'>Linkedin</a>, "+"<a href='"+list[i][2]+"'>Website</a> "+list[i][3]+", Company Size: "+list[i][4]+", Domain: "+list[i][5]+".<br><br><br>";
+                                }
+                                $('#results').append(texto);
+                            }
+                            );
+                    });
+        }); 
+        </script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    
+    <body>
+        <br>
+        <br>
+        <br>
+        <div class="container">
+            <div class="row">
+              <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5">
+                  <div class="card-body">
+                    <h5 class="card-title text-center">Company Contact Links</h5>
+                    <form class="form-signin">
+                      <div class="form-label-group">
+                        <input type="text" id="query" name="query" class="form-control" placeholder="Enter Query" required autofocus>
+                        <label for="query">Query</label>
+                      </div>
+        
+                      <div class="form-label-group">
+                        <input type="number" id="pages" name="pages" class="form-control" placeholder="Enter number of Pages" required>
+                        <label for="pages">Pages</label>
+                      </div>
+        
+                      <input type='button' id='btn' class='btn btn-lg btn-primary btn-block text-uppercase' value='Submit'>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <br>
+        <div class="container">
+            <div class="row">
+              <div class="col-sm-9 col-md-7 col-lg-7 mx-auto">
+                <div class="card card-signin my-5">
+                  <div class="card-body">
+                    <div id="results">
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </body>
+</html>
